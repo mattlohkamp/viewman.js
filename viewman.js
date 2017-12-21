@@ -1,14 +1,17 @@
 'use strict'
 
 class ViewMan {
-  constructor(classNames) {
-    this.classNames = classNames
+  constructor(viewClasses,initView) {
+    this.viewClasses = viewClasses.map(className=>'.'+className)
+    if(initView === undefined){
+      this.toView(viewClasses[0])
+    }else if(initView !== false){
+      this.toView(initView)
+    }
   }
   toView(viewClassName){
-    this.classNames.forEach(className=>{
-      Array.from(document.getElementsByClassName(className)).forEach(element=>{
-        element.style.display = (className == viewClassName) ? null : 'none'
-      })
+    Array.from(document.querySelectorAll(this.viewClasses.join(','))).forEach(viewElement=>{
+      viewElement.style.display = (Array.from(viewElement.classList).indexOf(viewClassName) != -1) ? null : 'none'
     })
   }
 }
