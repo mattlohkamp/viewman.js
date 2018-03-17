@@ -1,0 +1,26 @@
+<html>
+  <head></head>
+  <body>
+    <ol>
+      <li class="test1">1</li>
+      <li class="test1">2</li>
+      <li id="test2">3</li>
+      <li name="test">4</li>
+    </ol>
+    <!--  jooblescrizz  -->
+    <script src="es6-eventemitter.js"></script>
+    <script src="viewman.js"></script>
+    <script>  'use strict'
+      let vm = new ViewMan([
+        document.querySelectorAll('.test1'),
+        document.querySelectorAll('#test2'),
+        document.querySelectorAll('li[name="test"]')
+      ])
+
+      vm.addEventListener('viewChange',()=>console.log('changing...'))
+      vm.addEventListener('viewChanged',()=>console.log('changed...'))
+      vm.addEventListener('viewShow',()=>console.log('showing...'))
+      vm.addEventListener('viewHide',()=>console.log('hiding...'))
+    </script>
+  </body>
+</html>
